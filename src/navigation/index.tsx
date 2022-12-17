@@ -3,7 +3,7 @@ import Home from '../screens/Home';
 
 const Stack = createNativeStackNavigator();
 
-function RootStack() {
+const RootStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -15,6 +15,6 @@ function RootStack() {
       />
     </Stack.Navigator>
   );
-}
+};
 
 export default RootStack;
