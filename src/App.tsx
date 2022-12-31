@@ -1,5 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect} from 'react';
+import {SafeAreaView} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import RootStack from './navigation';
 
@@ -9,9 +10,11 @@ const App = () => {
   }, []);
 
   return (
-    <NavigationContainer>
-      <RootStack />
-    </NavigationContainer>
+    <SafeAreaView style={{flex: 1}}>
+      <NavigationContainer>
+        <RootStack />
+      </NavigationContainer>
+    </SafeAreaView>
   );
 };
 
