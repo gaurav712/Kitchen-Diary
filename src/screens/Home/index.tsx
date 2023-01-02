@@ -1,11 +1,25 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
+import ThemeContext from '../../contexts/ThemeContext';
 
 const Home = () => {
   return (
-    <View>
-      <Text style={{color: 'red'}}>Hello There!</Text>
-    </View>
+    <ThemeContext.Consumer>
+      {themeContext => (
+        <View>
+          <Text style={{color: themeContext?.theme?.accent}}>Hello There!</Text>
+          <TouchableOpacity
+            onPress={() => {
+              themeContext?.setTheme({
+                ...themeContext?.theme,
+                accent: 'blue',
+              });
+            }}>
+            <Text>Change to blue</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+    </ThemeContext.Consumer>
   );
 };
 
