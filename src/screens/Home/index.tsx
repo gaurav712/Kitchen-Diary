@@ -1,22 +1,71 @@
-import React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+import {SearchBar} from '@rneui/themed';
+import React, {useEffect, useState} from 'react';
+import {FlatList, Text, View} from 'react-native';
 import ThemeContext from '../../contexts/ThemeContext';
+import styles from './styles';
 
 const Home = () => {
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
+  const data = [
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hello',
+    },
+    {
+      title: 'Hello',
+    },
+  ];
+
+  interface IData {
+    title: string;
+  }
+
+  useEffect(() => {
+    if (searchQuery) console.log(searchQuery);
+  }, [searchQuery]);
+
+  const Header = () => {
+    return (
+      <View style={styles.header}>
+        <Text style={styles.title}>{'My\nRecipes'}</Text>
+        <SearchBar
+          placeholder="Search Here"
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          platform={'ios'}
+        />
+      </View>
+    );
+  };
+
+  const renderRecipeCard = ({item, index}: {item: IData; index: number}) => (
+    <View style={index % 2 ? styles.cardRight : styles.cardLeft}>
+      <Text>{''}</Text>
+    </View>
+  );
+
   return (
     <ThemeContext.Consumer>
       {themeContext => (
-        <View>
-          <Text style={{color: themeContext?.theme?.accent}}>Hello There!</Text>
-          <TouchableOpacity
-            onPress={() => {
-              themeContext?.setTheme({
-                ...themeContext?.theme,
-                accent: 'blue',
-              });
-            }}>
-            <Text>Change to blue</Text>
-          </TouchableOpacity>
+        <View style={styles.container}>
+          <FlatList
+            data={data}
+            numColumns={2}
+            renderItem={renderRecipeCard}
+            ListHeaderComponent={<Header />}
+          />
         </View>
       )}
     </ThemeContext.Consumer>
