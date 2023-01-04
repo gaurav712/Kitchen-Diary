@@ -35,6 +35,11 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 0,
     marginVertical: 10,
   },
+  addRecipeButton: {
+    position: 'absolute',
+    bottom: 30,
+    right: 25,
+  },
 });
 
 export default styles;

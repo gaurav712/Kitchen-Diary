@@ -1,6 +1,7 @@
-import {SearchBar} from '@rneui/themed';
+import {FAB, SearchBar} from '@rneui/themed';
 import React, {useEffect, useState} from 'react';
 import {FlatList, Text, View} from 'react-native';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
 
@@ -36,6 +37,10 @@ const Home = () => {
     if (searchQuery) console.log(searchQuery);
   }, [searchQuery]);
 
+  const handleAddRecipe = () => {
+    console.log('Cooking...');
+  };
+
   const Header = () => {
     return (
       <View style={styles.header}>
@@ -65,6 +70,17 @@ const Home = () => {
             numColumns={2}
             renderItem={renderRecipeCard}
             ListHeaderComponent={<Header />}
+          />
+          <FAB
+            style={styles.addRecipeButton}
+            icon={
+              <MaterialCommunityIcons
+                name="chef-hat"
+                color={'white'}
+                size={30}
+              />
+            }
+            onPress={handleAddRecipe}
           />
         </View>
       )}
