@@ -91,6 +91,7 @@ const Home = () => {
             keyExtractor={item => item.id}
             numColumns={2}
             renderItem={renderRecipeCard}
+            showsVerticalScrollIndicator={false}
             ListHeaderComponent={
               <View style={styles.header}>
                 <Text style={styles.title}>{'My\nRecipes'}</Text>
