@@ -41,20 +41,6 @@ const Home = () => {
     console.log('Cooking...');
   };
 
-  const Header = () => {
-    return (
-      <View style={styles.header}>
-        <Text style={styles.title}>{'My\nRecipes'}</Text>
-        <SearchBar
-          placeholder="Search Here"
-          value={searchQuery}
-          onChangeText={setSearchQuery}
-          platform={'ios'}
-        />
-      </View>
-    );
-  };
-
   const renderRecipeCard = ({item, index}: {item: IData; index: number}) => (
     <View style={index % 2 ? styles.cardRight : styles.cardLeft}>
       <Text>{''}</Text>
@@ -69,7 +55,17 @@ const Home = () => {
             data={data}
             numColumns={2}
             renderItem={renderRecipeCard}
-            ListHeaderComponent={<Header />}
+            ListHeaderComponent={
+              <View style={styles.header}>
+                <Text style={styles.title}>{'My\nRecipes'}</Text>
+                <SearchBar
+                  placeholder="Search Here"
+                  value={searchQuery}
+                  onChangeText={setSearchQuery}
+                  platform={'ios'}
+                />
+              </View>
+            }
           />
           <FAB
             style={styles.addRecipeButton}
