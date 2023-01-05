@@ -96,7 +96,9 @@ const Home = () => {
       {_ => (
         <View style={styles.container}>
           <FlatList
-            data={data}
+            data={data.filter(item =>
+              item.name.toLowerCase().includes(searchQuery.toLowerCase()),
+            )}
             keyExtractor={item => item.id}
             numColumns={2}
             renderItem={renderRecipeCard}
