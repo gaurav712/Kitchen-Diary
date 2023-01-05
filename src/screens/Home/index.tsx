@@ -10,22 +10,22 @@ const Home = () => {
 
   const data = [
     {
-      title: 'Hello',
+      title: '',
     },
     {
-      title: 'Hello',
+      title: '',
     },
     {
-      title: 'Hello',
+      title: '',
     },
     {
-      title: 'Hello',
+      title: '',
     },
     {
-      title: 'Hello',
+      title: '',
     },
     {
-      title: 'Hello',
+      title: '',
     },
   ];
 
@@ -43,7 +43,7 @@ const Home = () => {
 
   const renderRecipeCard = ({item, index}: {item: IData; index: number}) => (
     <View style={index % 2 ? styles.cardRight : styles.cardLeft}>
-      <Text>{''}</Text>
+      <Text>{item.title}</Text>
     </View>
   );
 
