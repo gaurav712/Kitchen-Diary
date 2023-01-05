@@ -1,6 +1,6 @@
 import {FAB, SearchBar} from '@rneui/themed';
 import React, {useEffect, useState} from 'react';
-import {FlatList, Text, View} from 'react-native';
+import {FlatList, Image, Text, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -10,27 +10,41 @@ const Home = () => {
 
   const data = [
     {
+      id: '1',
       title: '',
+      imageUri: 'http://localhost:8000/image.jpg',
     },
     {
+      id: '2',
       title: '',
+      imageUri: 'http://localhost:8000/image2.jpg',
     },
     {
+      id: '3',
       title: '',
+      imageUri: 'http://localhost:8000/image3.jpg',
     },
     {
+      id: '4',
       title: '',
+      imageUri: 'http://localhost:8000/image4.jpg',
     },
     {
+      id: '5',
       title: '',
+      imageUri: 'http://localhost:8000/image5.jpg',
     },
     {
+      id: '6',
       title: '',
+      imageUri: 'http://localhost:8000/image6.jpg',
     },
   ];
 
   interface IData {
+    id: string;
     title: string;
+    imageUri: string;
   }
 
   useEffect(() => {
@@ -41,8 +55,29 @@ const Home = () => {
     console.log('Cooking...');
   };
 
+  const getCardStyles = (index: number) => {
+    if (index == 1) {
+      return {...styles.cardRight, ...styles.cardLarge, marginTop: 10};
+    }
+    const rem = index % 4;
+    switch (rem) {
+      case 0:
+        return {...styles.cardLeft, ...styles.cardSmall};
+      case 1:
+        return {...styles.cardRight, ...styles.cardLarge};
+      case 2:
+        return {...styles.cardLeft, ...styles.cardLarge, marginTop: -25};
+      case 3:
+        return {...styles.cardRight, ...styles.cardSmall};
+    }
+  };
+
   const renderRecipeCard = ({item, index}: {item: IData; index: number}) => (
-    <View style={index % 2 ? styles.cardRight : styles.cardLeft}>
+    <View style={getCardStyles(index)}>
+      <Image
+        source={{uri: item.imageUri}}
+        style={index % 2 ? styles.recipeImageRight : styles.recipeImageLeft}
+      />
       <Text>{item.title}</Text>
     </View>
   );
@@ -53,6 +88,7 @@ const Home = () => {
         <View style={styles.container}>
           <FlatList
             data={data}
+            keyExtractor={item => item.id}
             numColumns={2}
             renderItem={renderRecipeCard}
             ListHeaderComponent={
