@@ -11,39 +11,39 @@ const Home = () => {
   const data = [
     {
       id: '1',
-      title: '',
+      name: 'Fettuccine',
       imageUri: 'http://localhost:8000/image.jpg',
     },
     {
       id: '2',
-      title: '',
+      name: 'Crock Pot Chicken',
       imageUri: 'http://localhost:8000/image2.jpg',
     },
     {
       id: '3',
-      title: '',
+      name: 'Baked Eggs',
       imageUri: 'http://localhost:8000/image3.jpg',
     },
     {
       id: '4',
-      title: '',
+      name: 'Seared Tuna',
       imageUri: 'http://localhost:8000/image4.jpg',
     },
     {
       id: '5',
-      title: '',
+      name: 'Filet',
       imageUri: 'http://localhost:8000/image5.jpg',
     },
     {
       id: '6',
-      title: '',
+      name: 'Chicken Parmesan',
       imageUri: 'http://localhost:8000/image6.jpg',
     },
   ];
 
   interface IData {
     id: string;
-    title: string;
+    name: string;
     imageUri: string;
   }
 
@@ -78,7 +78,16 @@ const Home = () => {
         source={{uri: item.imageUri}}
         style={index % 2 ? styles.recipeImageRight : styles.recipeImageLeft}
       />
-      <Text>{item.title}</Text>
+      <View
+        style={{
+          ...styles.recipeNameOverlay,
+          borderBottomRightRadius: index % 2 ? 0 : 30,
+          borderTopLeftRadius: index % 2 ? 30 : 0,
+        }}>
+        <Text style={styles.recipeNameText} numberOfLines={3}>
+          {item.name}
+        </Text>
+      </View>
     </View>
   );
 

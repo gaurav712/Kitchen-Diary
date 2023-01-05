@@ -61,6 +61,22 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     borderBottomRightRadius: 0,
   },
+  recipeNameOverlay: {
+    position: 'absolute',
+    backgroundColor: '#0004',
+    width: '100%',
+    height: '100%',
+    zIndex: 1,
+    borderRadius: 30,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  recipeNameText: {
+    color: '#fff',
+    fontSize: 25,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
   addRecipeButton: {
     position: 'absolute',
     bottom: 30,
