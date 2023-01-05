@@ -47,10 +47,6 @@ const Home = () => {
     imageUri: string;
   }
 
-  useEffect(() => {
-    if (searchQuery) console.log(searchQuery);
-  }, [searchQuery]);
-
   const handleAddRecipe = () => {
     console.log('Cooking...');
   };
