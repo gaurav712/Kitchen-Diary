@@ -93,7 +93,7 @@ const Home = () => {
 
   return (
     <ThemeContext.Consumer>
-      {themeContext => (
+      {_ => (
         <View style={styles.container}>
           <FlatList
             data={data}
