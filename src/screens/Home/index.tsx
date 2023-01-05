@@ -66,7 +66,7 @@ const Home = () => {
       case 1:
         return {...styles.cardRight, ...styles.cardLarge};
       case 2:
-        return {...styles.cardLeft, ...styles.cardLarge, marginTop: -25};
+        return {...styles.cardLeft, ...styles.cardLarge, marginTop: -30};
       case 3:
         return {...styles.cardRight, ...styles.cardSmall};
     }
