@@ -4,13 +4,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingHorizontal: 10,
-    backgroundColor: '#fff',
   },
   header: {
     marginVertical: 20,
   },
   title: {
-    color: '#000',
     fontSize: 60,
     marginVertical: 20,
     marginHorizontal: 10,
@@ -22,7 +20,6 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     borderRadius: 30,
     borderTopLeftRadius: 0,
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -38,7 +35,6 @@ const styles = StyleSheet.create({
     marginRight: 10,
     borderRadius: 30,
     borderBottomRightRadius: 0,
-    shadowColor: '#000',
     shadowOffset: {
       width: 0,
       height: 2,
@@ -82,7 +78,14 @@ const styles = StyleSheet.create({
   addRecipeButton: {
     position: 'absolute',
     bottom: 30,
-    right: 25,
+    alignSelf: 'center',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.17,
+    shadowRadius: 2.54,
+    elevation: 3,
   },
 });
 

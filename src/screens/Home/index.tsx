@@ -3,6 +3,7 @@ import {FAB, SearchBar} from '@rneui/themed';
 import React, {useState} from 'react';
 import {FlatList, Image, Text, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {ThemeContextType} from '../../@types/contexts/types';
 import {RootNavigationProp} from '../../@types/navigation';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -72,8 +73,20 @@ const Home = () => {
     }
   };
 
-  const renderRecipeCard = ({item, index}: {item: IData; index: number}) => (
-    <View style={getCardStyles(index)}>
+  const renderRecipeCard = ({
+    item,
+    index,
+    themeContext,
+  }: {
+    item: IData;
+    index: number;
+    themeContext: ThemeContextType | null;
+  }) => (
+    <View
+      style={[
+        getCardStyles(index),
+        {shadowColor: themeContext?.theme.textColor},
+      ]}>
       <Image
         source={{uri: item.imageUri}}
         style={index % 2 ? styles.recipeImageRight : styles.recipeImageLeft}
@@ -93,35 +106,70 @@ const Home = () => {
 
   return (
     <ThemeContext.Consumer>
-      {_ => (
-        <View style={styles.container}>
+      {themeContext => (
+        <View
+          style={[
+            styles.container,
+            {backgroundColor: themeContext?.theme.backgroundColor},
+          ]}>
           <FlatList
             data={data.filter(item =>
               item.name.toLowerCase().includes(searchQuery.toLowerCase()),
             )}
             keyExtractor={item => item.id}
             numColumns={2}
-            renderItem={renderRecipeCard}
+            renderItem={({item, index}) =>
+              renderRecipeCard({item, index, themeContext})
+            }
             showsVerticalScrollIndicator={false}
             ListHeaderComponent={
               <View style={styles.header}>
-                <Text style={styles.title}>{'My\nRecipes'}</Text>
+                <Text
+                  style={[
+                    styles.title,
+                    {color: themeContext?.theme.textColor},
+                  ]}>
+                  {'My\nRecipes'}
+                </Text>
                 <SearchBar
                   placeholder="Search Here"
                   value={searchQuery}
                   onChangeText={setSearchQuery}
                   platform={'ios'}
+                  containerStyle={{
+                    backgroundColor: themeContext?.theme.backgroundColor,
+                  }}
+                  inputContainerStyle={{
+                    backgroundColor: themeContext?.theme.secondaryColor,
+                  }}
+                  cancelButtonProps={{
+                    color: themeContext?.theme.accentSecondary,
+                  }}
                 />
               </View>
             }
           />
           <FAB
-            style={styles.addRecipeButton}
+            style={[
+              styles.addRecipeButton,
+              {shadowColor: themeContext?.theme.textColor},
+            ]}
+            containerStyle={{
+              padding: 5,
+              borderRadius: 40,
+              backgroundColor: themeContext?.theme.backgroundColor,
+            }}
+            buttonStyle={{
+              backgroundColor: themeContext?.theme.textColor,
+              borderRadius: 35,
+              height: 70,
+              width: 70,
+            }}
             icon={
               <MaterialCommunityIcons
                 name="chef-hat"
-                color={'white'}
-                size={30}
+                color={themeContext?.theme.backgroundColor}
+                size={25}
               />
             }
             onPress={handleAddRecipe}
