@@ -16,8 +16,9 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   cardLeft: {
-    flex: 0.5,
-    margin: 7.5,
+    width: '47%',
+    marginRight: '1.5%',
+    marginVertical: 7.5,
     marginLeft: 10,
     borderRadius: 30,
     borderTopLeftRadius: 0,
@@ -31,8 +32,9 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   cardRight: {
-    flex: 0.5,
-    margin: 7.5,
+    width: '47%',
+    marginLeft: '1.5%',
+    marginVertical: 7.5,
     marginRight: 10,
     borderRadius: 30,
     borderBottomRightRadius: 0,
