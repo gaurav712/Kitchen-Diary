@@ -53,7 +53,7 @@ const Home = () => {
 
   const getCardStyles = (index: number) => {
     if (index == 1) {
-      return {...styles.cardRight, ...styles.cardLarge, marginTop: 10};
+      return {...styles.cardRight, ...styles.cardLarge, marginTop: 7.5};
     }
     const rem = index % 4;
     switch (rem) {
