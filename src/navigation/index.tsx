@@ -18,7 +18,7 @@ const RootStack = () => {
         name="AddRecipe"
         component={AddRecipe}
         options={{
-          title: 'Add Recipe',
+          headerShown: false,
         }}
       />
     </Stack.Navigator>
