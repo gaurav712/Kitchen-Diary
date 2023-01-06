@@ -1,5 +1,5 @@
 import {FAB, SearchBar} from '@rneui/themed';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {FlatList, Image, Text, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
