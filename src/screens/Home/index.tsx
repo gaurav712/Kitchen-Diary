@@ -1,11 +1,15 @@
+import {useNavigation} from '@react-navigation/native';
 import {FAB, SearchBar} from '@rneui/themed';
 import React, {useState} from 'react';
 import {FlatList, Image, Text, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {RootNavigationProp} from '../../@types/navigation';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
 
 const Home = () => {
+  const navigation = useNavigation<RootNavigationProp>();
+
   const [searchQuery, setSearchQuery] = useState<string>('');
 
   const data = [
@@ -48,7 +52,7 @@ const Home = () => {
   }
 
   const handleAddRecipe = () => {
-    console.log('Cooking...');
+    navigation.navigate('AddRecipe');
   };
 
   const getCardStyles = (index: number) => {
