@@ -85,7 +85,10 @@ const Home = () => {
     <View
       style={[
         getCardStyles(index),
-        {shadowColor: themeContext?.theme.textColor},
+        {
+          shadowColor: themeContext?.theme.textColor,
+          borderColor: themeContext?.theme.textColor,
+        },
       ]}>
       <Image
         source={{uri: item.imageUri}}

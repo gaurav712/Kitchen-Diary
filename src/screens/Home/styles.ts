@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   cardLeft: {
+    borderWidth: 0.5,
     width: '47%',
     marginRight: '1.5%',
     marginVertical: 7.5,
@@ -29,6 +30,7 @@ const styles = StyleSheet.create({
     elevation: 3,
   },
   cardRight: {
+    borderWidth: 0.5,
     width: '47%',
     marginLeft: '1.5%',
     marginVertical: 7.5,
