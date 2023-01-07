@@ -81,13 +81,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 30,
     alignSelf: 'center',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.17,
-    shadowRadius: 2.54,
-    elevation: 3,
   },
 });
 

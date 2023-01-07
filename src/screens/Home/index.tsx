@@ -160,10 +160,7 @@ const Home = () => {
             }
           />
           <FAB
-            style={[
-              styles.addRecipeButton,
-              {shadowColor: themeContext?.theme.textColor},
-            ]}
+            style={styles.addRecipeButton}
             containerStyle={{
               padding: 5,
               borderRadius: 40,
