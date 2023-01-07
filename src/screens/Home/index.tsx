@@ -1,7 +1,14 @@
 import {useNavigation} from '@react-navigation/native';
 import {FAB, SearchBar} from '@rneui/themed';
 import React, {useState} from 'react';
-import {FlatList, Image, Text, View} from 'react-native';
+import {
+  FlatList,
+  Image,
+  Text,
+  TouchableHighlight,
+  TouchableWithoutFeedback,
+  View,
+} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContextType} from '../../@types/contexts/types';
 import {RootNavigationProp} from '../../@types/navigation';
@@ -56,6 +63,10 @@ const Home = () => {
     navigation.navigate('AddRecipe');
   };
 
+  const handleRecipeCardClicked = () => {
+    navigation.navigate('RecipeDetails');
+  };
+
   const getCardStyles = (index: number) => {
     if (index == 1) {
       return {...styles.cardRight, ...styles.cardLarge, marginTop: 7.5};
@@ -82,29 +93,32 @@ const Home = () => {
     index: number;
     themeContext: ThemeContextType | null;
   }) => (
-    <View
+    <TouchableHighlight
       style={[
         getCardStyles(index),
         {
           shadowColor: themeContext?.theme.textColor,
           borderColor: themeContext?.theme.textColor,
         },
-      ]}>
-      <Image
-        source={{uri: item.imageUri}}
-        style={index % 2 ? styles.recipeImageRight : styles.recipeImageLeft}
-      />
-      <View
-        style={{
-          ...styles.recipeNameOverlay,
-          borderBottomRightRadius: index % 2 ? 0 : 30,
-          borderTopLeftRadius: index % 2 ? 30 : 0,
-        }}>
-        <Text style={styles.recipeNameText} numberOfLines={3}>
-          {item.name}
-        </Text>
-      </View>
-    </View>
+      ]}
+      onPress={handleRecipeCardClicked}>
+      <>
+        <Image
+          source={{uri: item.imageUri}}
+          style={index % 2 ? styles.recipeImageRight : styles.recipeImageLeft}
+        />
+        <View
+          style={{
+            ...styles.recipeNameOverlay,
+            borderBottomRightRadius: index % 2 ? 0 : 30,
+            borderTopLeftRadius: index % 2 ? 30 : 0,
+          }}>
+          <Text style={styles.recipeNameText} numberOfLines={3}>
+            {item.name}
+          </Text>
+        </View>
+      </>
+    </TouchableHighlight>
   );
 
   return (
