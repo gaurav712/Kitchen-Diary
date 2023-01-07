@@ -1,14 +1,7 @@
 import {useNavigation} from '@react-navigation/native';
 import {FAB, SearchBar} from '@rneui/themed';
 import React, {useState} from 'react';
-import {
-  FlatList,
-  Image,
-  Text,
-  TouchableHighlight,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import {FlatList, Image, Text, TouchableHighlight, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {ThemeContextType} from '../../@types/contexts/types';
 import {RootNavigationProp} from '../../@types/navigation';
