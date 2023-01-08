@@ -1,6 +1,6 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
+import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import BootSplash from 'react-native-bootsplash';
 import {ITheme} from './@types/contexts/types';
 import dark from './constants/colorschemes/dark';
@@ -14,6 +14,14 @@ const App = () => {
   }, []);
 
   const [theme, setTheme] = useState(dark);
+
+  const colorscheme = useColorScheme();
+
+  useEffect(() => {
+    if (colorscheme) {
+      setTheme(colorscheme === 'light' ? light : dark);
+    }
+  }, [colorscheme]);
 
   return (
     <ThemeContext.Provider
