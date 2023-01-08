@@ -1,7 +1,7 @@
 import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
-import SplashScreen from 'react-native-splash-screen';
+import BootSplash from 'react-native-bootsplash';
 import {ITheme} from './@types/contexts/types';
 import dark from './constants/colorschemes/dark';
 import light from './constants/colorschemes/light';
@@ -10,7 +10,7 @@ import RootStack from './navigation';
 
 const App = () => {
   useEffect(() => {
-    SplashScreen.hide();
+    BootSplash.hide();
   }, []);
 
   const [theme, setTheme] = useState(dark);
