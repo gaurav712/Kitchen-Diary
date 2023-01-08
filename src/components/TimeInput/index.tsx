@@ -19,11 +19,11 @@ const TimeInput = ({
 }) => {
   const selectPickerData = ['Minute(s)', 'Hour(s)'];
 
-  const [numValue, setNumValue] = useState<number>(0.0);
+  const [numValue, setNumValue] = useState<string>('0.0');
   const [unit, setUnit] = useState<'Hour(s)' | 'Minute(s)' | ''>('');
 
   const handleNumValueChange = (value: string) => {
-    setNumValue(parseFloat(value));
+    setNumValue(value);
   };
 
   const handleUnitChange = (value: string) => {
@@ -32,6 +32,10 @@ const TimeInput = ({
 
   useEffect(() => {
     if (numValue && unit) {
+      if (isNaN(parseFloat(numValue))) {
+        onChangeTime(`0.0 ${unit}`);
+        return;
+      }
       onChangeTime(`${numValue} ${unit}`);
     }
   }, [numValue, unit]);
@@ -48,7 +52,7 @@ const TimeInput = ({
               contentContainerStyle={styles.inputNum}
               keyboardType={'numeric'}
               placeholder="Time"
-              value={isNaN(numValue) ? '' : numValue.toString()}
+              value={numValue.toString()}
               onChangeText={handleNumValueChange}
             />
             <SelectPicker
