@@ -1,4 +1,4 @@
-import {Text, TextInput, View} from 'react-native';
+import {StyleProp, Text, TextInput, View, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -10,6 +10,7 @@ const CustomTextInput = ({
   onChangeText,
   iconName,
   align = 'left',
+  contentContainerStyle,
 }: {
   placeholder: string;
   label?: string;
@@ -17,11 +18,12 @@ const CustomTextInput = ({
   onChangeText: (value: string) => void;
   iconName?: string;
   align?: 'left' | 'right';
+  contentContainerStyle?: StyleProp<ViewStyle>;
 }) => {
   return (
     <ThemeContext.Consumer>
       {themeContext => (
-        <View style={styles.container}>
+        <View style={[styles.container, contentContainerStyle]}>
           {label ? (
             <Text
               style={[styles.label, {color: themeContext?.theme.textColor}]}>
