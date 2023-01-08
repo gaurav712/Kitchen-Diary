@@ -16,6 +16,45 @@ const AddRecipe = () => {
     console.log('Saving...');
   };
 
+  const handleAddImage = () => {
+    console.log('Adding Image...');
+  };
+
+  const AddImageIconComponent = () => {
+    return (
+      <ThemeContext.Consumer>
+        {themeContext => (
+          <View
+            style={[
+              styles.addImageIconContainer,
+              {
+                borderColor: themeContext?.theme.textColor,
+              },
+            ]}>
+            <MaterialCommunityIcons
+              name="image-filter-hdr"
+              color={themeContext?.theme.textColor}
+              size={50}
+            />
+            <View
+              style={[
+                styles.addImagePlusIcon,
+                {
+                  backgroundColor: themeContext?.theme.textColor,
+                },
+              ]}>
+              <MaterialCommunityIcons
+                name="plus"
+                color={themeContext?.theme.backgroundColor}
+                size={30}
+              />
+            </View>
+          </View>
+        )}
+      </ThemeContext.Consumer>
+    );
+  };
+
   return (
     <ThemeContext.Consumer>
       {themeContext => (
@@ -24,6 +63,16 @@ const AddRecipe = () => {
             styles.container,
             {backgroundColor: themeContext?.theme.backgroundColor},
           ]}>
+          <View style={styles.recipeForm}>
+            <TouchableOpacity
+              style={[
+                styles.addRecipeImage,
+                {borderColor: themeContext?.theme.textColor},
+              ]}
+              onPress={handleAddImage}>
+              <AddImageIconComponent />
+            </TouchableOpacity>
+          </View>
           <View style={styles.headerControls}>
             <TouchableOpacity
               style={[

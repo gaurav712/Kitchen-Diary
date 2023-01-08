@@ -1,4 +1,6 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native';
+
+const {width} = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   container: {
@@ -23,6 +25,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.17,
     shadowRadius: 2.54,
     elevation: 3,
+  },
+  recipeForm: {
+    flex: 1,
+    width: '100%',
+    alignItems: 'center',
+  },
+  addRecipeImage: {
+    marginTop: 90,
+    borderWidth: 1,
+    borderRadius: 30,
+    height: 225,
+    borderTopLeftRadius: 0,
+    width: width - 40,
+    marginHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addImageIconContainer: {
+    borderRadius: 20,
+    padding: 15,
+    borderWidth: 0.5,
+  },
+  addImagePlusIcon: {
+    position: 'absolute',
+    right: -20,
+    top: -20,
+    padding: 5,
+    borderRadius: 30,
   },
 });
 
