@@ -4,6 +4,7 @@ import {TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
 import CustomTextInput from '../../components/CustomTextInput';
+import TimeInput from '../../components/TimeInput';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
 
@@ -24,6 +25,10 @@ const AddRecipe = () => {
 
   const handleAddImage = () => {
     console.log('Adding Image...');
+  };
+
+  const handleChangeDuration = (duration: string) => {
+    console.log(duration);
   };
 
   const AddImageIconComponent = () => {
@@ -88,6 +93,13 @@ const AddRecipe = () => {
                 setRecipeData({...recipeData, recipeName})
               }
               iconName={'food'}
+              contentContainerStyle={styles.formField}
+            />
+            <TimeInput
+              label="Time to cook"
+              iconName="clock"
+              onChangeTime={handleChangeDuration}
+              contentContainerStyle={styles.formField}
             />
           </View>
           <View style={styles.headerControls}>

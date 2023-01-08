@@ -32,8 +32,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingHorizontal: 20,
   },
+  formField: {
+    marginVertical: 10,
+  },
   addRecipeImage: {
     marginTop: 90,
+    marginBottom: 15,
     borderWidth: 1,
     borderRadius: 30,
     height: 225,
