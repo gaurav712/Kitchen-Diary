@@ -12,7 +12,7 @@ const AddRecipe = () => {
     navigation.goBack();
   };
 
-  const handleExport = () => {
+  const handleSave = () => {
     console.log('Exporting...');
   };
 
@@ -48,9 +48,9 @@ const AddRecipe = () => {
                   shadowColor: themeContext?.theme.textColor,
                 },
               ]}
-              onPress={handleExport}>
+              onPress={handleSave}>
               <MaterialCommunityIcons
-                name="export-variant"
+                name="check"
                 size={30}
                 color={themeContext?.theme.accent}
               />
