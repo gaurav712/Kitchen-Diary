@@ -13,7 +13,7 @@ const AddRecipe = () => {
   };
 
   const handleSave = () => {
-    console.log('Exporting...');
+    console.log('Saving...');
   };
 
   return (
