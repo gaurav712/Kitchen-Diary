@@ -1,4 +1,11 @@
-import {StyleProp, Text, TextInput, View, ViewStyle} from 'react-native';
+import {
+  KeyboardType,
+  StyleProp,
+  Text,
+  TextInput,
+  View,
+  ViewStyle,
+} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -10,6 +17,7 @@ const CustomTextInput = ({
   onChangeText,
   iconName,
   align = 'left',
+  keyboardType = 'default',
   contentContainerStyle,
 }: {
   placeholder: string;
@@ -18,6 +26,7 @@ const CustomTextInput = ({
   onChangeText: (value: string) => void;
   iconName?: string;
   align?: 'left' | 'right';
+  keyboardType?: KeyboardType;
   contentContainerStyle?: StyleProp<ViewStyle>;
 }) => {
   return (
@@ -41,6 +50,7 @@ const CustomTextInput = ({
                   borderBottomRightRadius: align === 'right' ? 0 : undefined,
                 },
               ]}
+              keyboardType={keyboardType}
               placeholder={placeholder}
               value={value}
               onChangeText={onChangeText}
