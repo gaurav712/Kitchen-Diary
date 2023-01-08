@@ -3,6 +3,8 @@ import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import {ITheme} from './@types/contexts/types';
+import dark from './constants/colorschemes/dark';
+import light from './constants/colorschemes/light';
 import ThemeContext from './contexts/ThemeContext';
 import RootStack from './navigation';
 
@@ -11,20 +13,7 @@ const App = () => {
     SplashScreen.hide();
   }, []);
 
-  const [theme, setTheme] = useState({
-    //colorscheme: 'dark',
-    //accent: '#000',
-    //backgroundColor: '#000',
-    //textColor: '#f6ecc9',
-    //secondaryColor: '#f6ecc9',
-    //accentSecondary: '#eb7a53',
-    colorscheme: 'light',
-    accent: '#f6ecc9',
-    backgroundColor: '#f6ecc9',
-    textColor: '#000',
-    secondaryColor: '#fff',
-    accentSecondary: '#eb7a53',
-  });
+  const [theme, setTheme] = useState(dark);
 
   return (
     <ThemeContext.Provider
