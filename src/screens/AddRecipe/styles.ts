@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     flex: 1,
     width: '100%',
     alignItems: 'center',
+    paddingHorizontal: 20,
   },
   addRecipeImage: {
     marginTop: 90,

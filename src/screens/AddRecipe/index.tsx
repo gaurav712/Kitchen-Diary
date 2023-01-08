@@ -1,12 +1,18 @@
 import {useNavigation} from '@react-navigation/native';
+import {useState} from 'react';
 import {TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
+import CustomTextInput from '../../components/CustomTextInput';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
 
 const AddRecipe = () => {
   const navigation = useNavigation<RootNavigationProp>();
+
+  const [recipeData, setRecipeData] = useState({
+    recipeName: '',
+  });
 
   const handleBack = () => {
     navigation.goBack();
@@ -72,6 +78,17 @@ const AddRecipe = () => {
               onPress={handleAddImage}>
               <AddImageIconComponent />
             </TouchableOpacity>
+
+            {/* The form */}
+            <CustomTextInput
+              placeholder="Name your dish"
+              label="Recipe Name"
+              value={recipeData.recipeName}
+              onChangeText={recipeName =>
+                setRecipeData({...recipeData, recipeName})
+              }
+              iconName={'food'}
+            />
           </View>
           <View style={styles.headerControls}>
             <TouchableOpacity
