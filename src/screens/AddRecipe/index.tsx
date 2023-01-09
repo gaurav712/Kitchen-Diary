@@ -4,6 +4,7 @@ import {TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
 import CustomTextInput from '../../components/CustomTextInput';
+import IngredientInput from '../../components/IngredientInput';
 import TimeInput from '../../components/TimeInput';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -101,6 +102,7 @@ const AddRecipe = () => {
               onChangeTime={handleChangeDuration}
               contentContainerStyle={styles.formField}
             />
+            <IngredientInput />
           </View>
           <View style={styles.headerControls}>
             <TouchableOpacity
