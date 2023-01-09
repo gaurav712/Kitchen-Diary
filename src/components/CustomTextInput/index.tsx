@@ -3,6 +3,7 @@ import {
   StyleProp,
   Text,
   TextInput,
+  TextStyle,
   View,
   ViewStyle,
 } from 'react-native';
@@ -19,6 +20,7 @@ const CustomTextInput = ({
   align = 'left',
   keyboardType = 'default',
   contentContainerStyle,
+  inputStyle,
 }: {
   placeholder: string;
   label?: string;
@@ -28,6 +30,7 @@ const CustomTextInput = ({
   align?: 'left' | 'right';
   keyboardType?: KeyboardType;
   contentContainerStyle?: StyleProp<ViewStyle>;
+  inputStyle?: StyleProp<TextStyle>;
 }) => {
   return (
     <ThemeContext.Consumer>
@@ -49,6 +52,7 @@ const CustomTextInput = ({
                   borderTopLeftRadius: align === 'left' ? 0 : undefined,
                   borderBottomRightRadius: align === 'right' ? 0 : undefined,
                 },
+                inputStyle,
               ]}
               keyboardType={keyboardType}
               placeholder={placeholder}
