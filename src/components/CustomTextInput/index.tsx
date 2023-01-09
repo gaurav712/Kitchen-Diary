@@ -17,6 +17,7 @@ const CustomTextInput = ({
   value,
   onChangeText,
   iconName,
+  blankIcon = false,
   align = 'left',
   keyboardType = 'default',
   contentContainerStyle,
@@ -27,6 +28,7 @@ const CustomTextInput = ({
   value: string;
   onChangeText: (value: string) => void;
   iconName?: string;
+  blankIcon?: boolean;
   align?: 'left' | 'right';
   keyboardType?: KeyboardType;
   contentContainerStyle?: StyleProp<ViewStyle>;
@@ -45,13 +47,14 @@ const CustomTextInput = ({
           <View style={styles.inputContainer}>
             <TextInput
               style={[
-                styles.input,
                 {
                   color: themeContext?.theme.textColor,
                   borderColor: themeContext?.theme.textColor,
                   borderTopLeftRadius: align === 'left' ? 0 : undefined,
                   borderBottomRightRadius: align === 'right' ? 0 : undefined,
+                  marginRight: blankIcon ? 40 : undefined,
                 },
+                styles.input,
                 inputStyle,
               ]}
               keyboardType={keyboardType}
@@ -59,7 +62,7 @@ const CustomTextInput = ({
               value={value}
               onChangeText={onChangeText}
             />
-            {iconName ? (
+            {!blankIcon && iconName ? (
               <MaterialCommunityIcons
                 style={styles.inputIcon}
                 name={iconName}
