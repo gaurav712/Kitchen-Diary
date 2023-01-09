@@ -26,6 +26,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2.54,
     elevation: 3,
   },
+  scrollContainer: {
+    width: '100%',
+  },
   recipeForm: {
     flex: 1,
     width: '100%',
@@ -33,7 +36,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   formField: {
-    marginVertical: 10,
+    marginVertical: 7.5,
   },
   addRecipeImage: {
     marginTop: 90,
