@@ -32,9 +32,8 @@ const StepsInputTemplate = () => {
           <Text style={styles.heading}>Steps</Text>
           {stepsData &&
             instances?.map((_, index: number) => (
-              <View style={styles.stepsInputContainer}>
+              <View key={index} style={styles.stepsInputContainer}>
                 <CustomTextInput
-                  key={index}
                   placeholder="What to do"
                   blankIcon={true}
                   value={stepsData[index]}
