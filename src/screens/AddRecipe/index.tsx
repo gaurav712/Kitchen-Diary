@@ -5,6 +5,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {RootNavigationProp} from '../../@types/navigation';
 import CustomTextInput from '../../components/CustomTextInput';
 import IngredientInputListTemplate from '../../components/IngredientInputListTemplate';
+import StepsInputTemplate from '../../components/StepsInputTemplate';
 import TimeInput from '../../components/TimeInput';
 import ThemeContext from '../../contexts/ThemeContext';
 import styles from './styles';
@@ -106,6 +107,7 @@ const AddRecipe = () => {
               <IngredientInputListTemplate
                 contentContainerStyle={styles.formField}
               />
+              <StepsInputTemplate />
             </View>
           </ScrollView>
           <View style={styles.headerControls}>
