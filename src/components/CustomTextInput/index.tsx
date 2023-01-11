@@ -20,6 +20,7 @@ const CustomTextInput = ({
   blankIcon = false,
   align = 'left',
   keyboardType = 'default',
+  multiline = false,
   contentContainerStyle,
   inputStyle,
 }: {
@@ -31,6 +32,7 @@ const CustomTextInput = ({
   blankIcon?: boolean;
   align?: 'left' | 'right';
   keyboardType?: KeyboardType;
+  multiline?: boolean;
   contentContainerStyle?: StyleProp<ViewStyle>;
   inputStyle?: StyleProp<TextStyle>;
 }) => {
@@ -61,6 +63,7 @@ const CustomTextInput = ({
               placeholder={placeholder}
               value={value}
               onChangeText={onChangeText}
+              multiline={multiline}
             />
             {!blankIcon && iconName ? (
               <MaterialCommunityIcons
