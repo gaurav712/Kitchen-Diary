@@ -20,7 +20,10 @@ const IngredientInputListTemplate = ({
     <ThemeContext.Consumer>
       {themeContext => (
         <View style={styles.container}>
-          <Text style={styles.heading}>Ingredients</Text>
+          <Text
+            style={[styles.heading, {color: themeContext?.theme.textColor}]}>
+            Ingredients
+          </Text>
           {instances?.map((_, index: number) => (
             <IngredientInput
               contentContainerStyle={contentContainerStyle}

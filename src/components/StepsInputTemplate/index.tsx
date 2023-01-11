@@ -29,7 +29,10 @@ const StepsInputTemplate = () => {
     <ThemeContext.Consumer>
       {themeContext => (
         <View style={styles.container}>
-          <Text style={styles.heading}>Steps</Text>
+          <Text
+            style={[styles.heading, {color: themeContext?.theme.textColor}]}>
+            Steps
+          </Text>
           {stepsData &&
             instances?.map((_, index: number) => (
               <View key={index} style={styles.stepsInputContainer}>
