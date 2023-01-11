@@ -61,6 +61,7 @@ const CustomTextInput = ({
               ]}
               keyboardType={keyboardType}
               placeholder={placeholder}
+              placeholderTextColor={`${themeContext?.theme.textColor}50`}
               value={value}
               onChangeText={onChangeText}
               multiline={multiline}
