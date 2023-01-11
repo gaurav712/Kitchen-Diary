@@ -40,6 +40,8 @@ const StepsInputTemplate = () => {
                   onChangeText={(text: string) =>
                     handleStepsDataChange(index, text)
                   }
+                  multiline={true}
+                  inputStyle={styles.inputStyleMultilineOverride}
                 />
                 <View
                   style={[

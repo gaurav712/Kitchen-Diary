@@ -36,6 +36,10 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   },
+  inputStyleMultilineOverride: {
+    height: undefined,
+    minHeight: 40,
+  },
 });
 
 export default styles;
