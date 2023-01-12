@@ -1,8 +1,9 @@
 import {useNavigation} from '@react-navigation/native';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
+import {IStepsData} from '../../@types/recipe';
 import CustomTextInput from '../../components/CustomTextInput';
 import IngredientInputListTemplate from '../../components/IngredientInputListTemplate';
 import StepsInputTemplate from '../../components/StepsInputTemplate';
@@ -15,6 +16,7 @@ const AddRecipe = () => {
 
   const [recipeData, setRecipeData] = useState({
     recipeName: '',
+    stepsData: {},
   });
 
   const handleBack = () => {
@@ -32,6 +34,15 @@ const AddRecipe = () => {
   const handleChangeDuration = (duration: string) => {
     console.log(duration);
   };
+
+  const handleStepsChange = (stepsData: IStepsData) => {
+    setRecipeData({...recipeData, stepsData});
+  };
+
+  /* Feedback for when the data changes */
+  useEffect(() => {
+    if (recipeData) console.log(JSON.stringify(recipeData, null, 2));
+  }, [recipeData]);
 
   const AddImageIconComponent = () => {
     return (
@@ -107,7 +118,7 @@ const AddRecipe = () => {
               <IngredientInputListTemplate
                 contentContainerStyle={styles.formField}
               />
-              <StepsInputTemplate />
+              <StepsInputTemplate onChange={handleStepsChange} />
             </View>
           </ScrollView>
           <View style={styles.headerControls}>

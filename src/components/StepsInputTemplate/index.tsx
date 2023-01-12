@@ -1,15 +1,16 @@
 import {useEffect, useState} from 'react';
 import {Pressable, Text, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IStepsData} from '../../@types/recipe';
 import ThemeContext from '../../contexts/ThemeContext';
 import CustomTextInput from '../CustomTextInput';
 import styles from './styles';
 
-const StepsInputTemplate = () => {
-  interface IStepsData {
-    [key: string]: string;
-  }
-
+const StepsInputTemplate = ({
+  onChange,
+}: {
+  onChange: (stepsData: IStepsData) => void;
+}) => {
   const [instances, setInstances] = useState<any[]>([...Array(1)]);
   const [stepsData, setStepsData] = useState<IStepsData>({0: ''});
 
@@ -22,7 +23,7 @@ const StepsInputTemplate = () => {
   };
 
   useEffect(() => {
-    if (stepsData) console.log(JSON.stringify(stepsData, null, 2));
+    if (stepsData) onChange(stepsData);
   }, [stepsData]);
 
   return (
