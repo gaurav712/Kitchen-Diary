@@ -64,7 +64,7 @@ const StepsInputTemplate = ({
             ))}
           <Pressable
             style={[
-              styles.addIngredientIcon,
+              styles.addStepIcon,
               {
                 backgroundColor: themeContext?.theme.textColor,
               },

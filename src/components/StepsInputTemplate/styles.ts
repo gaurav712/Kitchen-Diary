@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     marginBottom: 5,
   },
-  addIngredientIcon: {
+  addStepIcon: {
     padding: 10,
     borderRadius: 25,
     alignSelf: 'center',
