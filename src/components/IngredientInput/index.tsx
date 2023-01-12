@@ -1,32 +1,44 @@
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import {IIngredient} from '../../@types/recipe';
 import ThemeContext from '../../contexts/ThemeContext';
 import CustomTextInput from '../CustomTextInput';
 import styles from './styles';
 
 const IngredientInput = ({
   label,
+  onChange,
   contentContainerStyle,
 }: {
   label?: string;
+  onChange: (ingredients: IIngredient) => void;
   contentContainerStyle?: StyleProp<ViewStyle>;
 }) => {
-  const [ingredientName, setIngredientName] = useState<string>('');
-  const [numValue, setNumValue] = useState<number>(0);
-  const [servingSize, setServingSize] = useState<string>('');
+  const [ingredient, setIngredient] = useState<IIngredient>({
+    name: '',
+    count: 0,
+    servingSize: '',
+  });
 
   const handleIngredientNameChange = (name: string) => {
-    setIngredientName(name);
+    setIngredient({...ingredient, name});
   };
 
-  const handleNumValueChange = (value: string) => {
-    setNumValue(parseInt(value));
+  const handleCountChange = (value: string) => {
+    setIngredient({...ingredient, count: parseInt(value)});
   };
 
-  const handleServingSizeChange = (value: string) => {
-    setServingSize(value);
+  const handleServingSizeChange = (servingSize: string) => {
+    setIngredient({...ingredient, servingSize});
   };
+
+  /* handle onChange */
+  useEffect(() => {
+    if (ingredient.name && !isNaN(ingredient.count) && ingredient.servingSize) {
+      onChange(ingredient);
+    }
+  }, [ingredient]);
 
   return (
     <ThemeContext.Consumer>
@@ -42,7 +54,7 @@ const IngredientInput = ({
             inputStyle={styles.ingredientNameInput}
             label={label}
             placeholder="Ingredient Name"
-            value={ingredientName}
+            value={ingredient.name}
             onChangeText={handleIngredientNameChange}
             blankIcon={true}
           />
@@ -50,14 +62,16 @@ const IngredientInput = ({
             <CustomTextInput
               contentContainerStyle={styles.inputNum}
               placeholder="Time"
-              value={isNaN(numValue) ? '0' : numValue.toString()}
-              onChangeText={handleNumValueChange}
+              value={
+                isNaN(ingredient.count) ? '0' : ingredient.count.toString()
+              }
+              onChangeText={handleCountChange}
             />
             <CustomTextInput
               contentContainerStyle={styles.servingSize}
               inputStyle={styles.servingSizeInput}
               placeholder="Serving Size"
-              value={servingSize}
+              value={ingredient.servingSize}
               onChangeText={handleServingSizeChange}
               blankIcon={true}
             />

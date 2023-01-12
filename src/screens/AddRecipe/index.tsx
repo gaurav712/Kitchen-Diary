@@ -3,7 +3,7 @@ import {useEffect, useState} from 'react';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
-import {IStepsData} from '../../@types/recipe';
+import {IIngredientsData, IStepsData} from '../../@types/recipe';
 import CustomTextInput from '../../components/CustomTextInput';
 import IngredientInputListTemplate from '../../components/IngredientInputListTemplate';
 import StepsInputTemplate from '../../components/StepsInputTemplate';
@@ -17,6 +17,7 @@ const AddRecipe = () => {
   const [recipeData, setRecipeData] = useState({
     recipeName: '',
     duration: '',
+    ingredients: {},
     stepsData: {},
   });
 
@@ -34,6 +35,10 @@ const AddRecipe = () => {
 
   const handleChangeDuration = (duration: string) => {
     setRecipeData({...recipeData, duration});
+  };
+
+  const handleIngredientsChange = (ingredients: IIngredientsData) => {
+    setRecipeData({...recipeData, ingredients});
   };
 
   const handleStepsChange = (stepsData: IStepsData) => {
@@ -117,6 +122,7 @@ const AddRecipe = () => {
                 contentContainerStyle={styles.formField}
               />
               <IngredientInputListTemplate
+                onChange={handleIngredientsChange}
                 contentContainerStyle={styles.formField}
               />
               <StepsInputTemplate onChange={handleStepsChange} />
