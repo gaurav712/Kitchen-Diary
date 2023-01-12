@@ -16,6 +16,7 @@ const AddRecipe = () => {
 
   const [recipeData, setRecipeData] = useState({
     recipeName: '',
+    duration: '',
     stepsData: {},
   });
 
@@ -32,7 +33,7 @@ const AddRecipe = () => {
   };
 
   const handleChangeDuration = (duration: string) => {
-    console.log(duration);
+    setRecipeData({...recipeData, duration});
   };
 
   const handleStepsChange = (stepsData: IStepsData) => {
