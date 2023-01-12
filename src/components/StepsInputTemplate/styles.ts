@@ -39,6 +39,8 @@ const styles = StyleSheet.create({
   inputStyleMultilineOverride: {
     height: undefined,
     minHeight: 40,
+    paddingTop: 10,
+    paddingBottom: 10,
   },
 });
 
