@@ -11,3 +11,10 @@ export interface IIngredientsData {
 export interface IStepsData {
   [key: string]: string;
 }
+
+export interface IRecipe {
+  recipeName: string;
+  duration: string;
+  ingredients: IIngredientsData;
+  stepsData: IStepsData;
+}

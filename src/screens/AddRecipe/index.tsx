@@ -9,6 +9,7 @@ import IngredientInputListTemplate from '../../components/IngredientInputListTem
 import StepsInputTemplate from '../../components/StepsInputTemplate';
 import TimeInput from '../../components/TimeInput';
 import ThemeContext from '../../contexts/ThemeContext';
+import {validateRecipeData} from '../../util/validator';
 import styles from './styles';
 
 const AddRecipe = () => {
@@ -26,7 +27,8 @@ const AddRecipe = () => {
   };
 
   const handleSave = () => {
-    console.log('Saving...');
+    const response = validateRecipeData(recipeData);
+    console.log(response);
   };
 
   const handleAddImage = () => {
