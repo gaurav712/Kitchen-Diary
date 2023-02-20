@@ -3,7 +3,6 @@ import {StyleProp, Text, View, ViewStyle} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import ThemeContext from '../../contexts/ThemeContext';
 import CustomTextInput from '../CustomTextInput';
-import SelectPicker from '../SelectPicker';
 import styles from './styles';
 
 const TimeInput = ({
@@ -17,28 +16,34 @@ const TimeInput = ({
   onChangeTime: (time: string) => void;
   contentContainerStyle?: StyleProp<ViewStyle>;
 }) => {
-  const selectPickerData = ['Minute(s)', 'Hour(s)'];
+  const unitValues = ['Minute(s)', 'Hour(s)'];
 
   const [numValue, setNumValue] = useState<string>('0.0');
-  const [unit, setUnit] = useState<'Hour(s)' | 'Minute(s)' | ''>('');
+  const [unitIndex, setUnitIndex] = useState<number>(0);
 
   const handleNumValueChange = (value: string) => {
     setNumValue(value);
   };
 
-  const handleUnitChange = (value: string) => {
-    setUnit(value as typeof unit); // to make TS happy
+  const handleUnitIndexChange = (change: number) => {
+    if (unitIndex + change > unitValues.length - 1) {
+      setUnitIndex(0);
+    } else if (unitIndex + change < 0) {
+      setUnitIndex(unitValues.length - 1);
+    } else {
+      setUnitIndex(unitIndex + change);
+    }
   };
 
   useEffect(() => {
-    if (numValue && unit) {
+    if (numValue) {
       if (isNaN(parseFloat(numValue))) {
-        onChangeTime(`0.0 ${unit}`);
+        onChangeTime(`0.0 ${unitValues[unitIndex]}`);
         return;
       }
-      onChangeTime(`${numValue} ${unit}`);
+      onChangeTime(`${numValue} ${unitValues[unitIndex]}`);
     }
-  }, [numValue, unit]);
+  }, [numValue, unitIndex]);
 
   return (
     <ThemeContext.Consumer>
@@ -55,13 +60,33 @@ const TimeInput = ({
               value={numValue.toString()}
               onChangeText={handleNumValueChange}
             />
-            <SelectPicker
-              data={selectPickerData}
-              placeholder="Select Time Unit"
-              align="right"
-              value={unit}
-              onSelect={handleUnitChange}
-            />
+            <View
+              style={[
+                styles.unitSelector,
+                {borderColor: themeContext?.theme.textColor},
+              ]}>
+              <MaterialCommunityIcons
+                style={styles.unitSelectorIcon}
+                name="chevron-left"
+                size={25}
+                color={themeContext?.theme.textColor}
+                onPress={() => handleUnitIndexChange(-1)}
+              />
+              <Text
+                style={[
+                  styles.unitSelectorText,
+                  {color: themeContext?.theme.textColor},
+                ]}>
+                {unitValues[unitIndex]}
+              </Text>
+              <MaterialCommunityIcons
+                style={styles.unitSelectorIcon}
+                name="chevron-right"
+                size={25}
+                color={themeContext?.theme.textColor}
+                onPress={() => handleUnitIndexChange(+1)}
+              />
+            </View>
             {iconName ? (
               <MaterialCommunityIcons
                 name={iconName}

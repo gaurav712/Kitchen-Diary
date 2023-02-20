@@ -16,6 +16,23 @@ const styles = StyleSheet.create({
   inputUnit: {
     flex: 1,
   },
+  unitSelector: {
+    top: 5,
+    borderRadius: 10,
+    borderBottomRightRadius: 0,
+    borderWidth: 0.5,
+    height: 40,
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  unitSelectorIcon: {
+    marginHorizontal: 5,
+  },
+  unitSelectorText: {
+    fontSize: 16,
+  },
   icon: {
     marginTop: 5,
     marginLeft: 10,
