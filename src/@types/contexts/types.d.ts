@@ -13,3 +13,8 @@ export type ThemeContextType = {
   theme: ITheme;
   setTheme: (theme: ITheme) => void;
 };
+
+export type RecipeStoreContextType = {
+  recipes: string[];
+  setRecipes: (recipes: string[]) => void;
+};

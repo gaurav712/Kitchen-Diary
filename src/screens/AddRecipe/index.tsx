@@ -1,5 +1,6 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
-import {useEffect, useState} from 'react';
+import {useContext, useEffect, useState} from 'react';
 import {ScrollView, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
@@ -8,12 +9,14 @@ import CustomTextInput from '../../components/CustomTextInput';
 import IngredientInputListTemplate from '../../components/IngredientInputListTemplate';
 import StepsInputTemplate from '../../components/StepsInputTemplate';
 import TimeInput from '../../components/TimeInput';
+import RecipeStoreContext from '../../contexts/RecipeStoreContext';
 import ThemeContext from '../../contexts/ThemeContext';
 import {validateRecipeData} from '../../util/validator';
 import styles from './styles';
 
 const AddRecipe = () => {
   const navigation = useNavigation<RootNavigationProp>();
+  const recipeStoreContext = useContext(RecipeStoreContext);
 
   const [recipeData, setRecipeData] = useState({
     recipeName: '',
@@ -26,9 +29,24 @@ const AddRecipe = () => {
     navigation.goBack();
   };
 
-  const handleSave = () => {
-    const response = validateRecipeData(recipeData);
-    console.log(response);
+  const storeData = async (key: string, value: string) => {
+    try {
+      await AsyncStorage.setItem(key, value);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  const handleSave = async () => {
+    //const response = validateRecipeData(recipeData);
+    //console.log(response);
+    let recipes = recipeStoreContext?.recipes;
+    if (recipes) {
+      recipes = [...recipes, recipeData.recipeName];
+      await storeData('recipes', JSON.stringify(recipes));
+      await storeData(recipeData.recipeName, JSON.stringify(recipeData));
+      recipeStoreContext?.setRecipes(recipes);
+    }
   };
 
   const handleAddImage = () => {
