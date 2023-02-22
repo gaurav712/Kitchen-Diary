@@ -1,7 +1,7 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useNavigation} from '@react-navigation/native';
 import {useContext, useEffect, useState} from 'react';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
+import {Alert, ScrollView, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
 import {IIngredientsData, IStepsData} from '../../@types/recipe';
@@ -42,6 +42,12 @@ const AddRecipe = () => {
     //console.log(response);
     let recipes = recipeStoreContext?.recipes;
     if (recipes) {
+      /* Check if the recipe already exists */
+      if (recipes.includes(recipeData.recipeName)) {
+        Alert.alert('Error Saving Recipe!', 'Recipe already exists!');
+        return;
+      }
+
       recipes = [...recipes, recipeData.recipeName];
       await storeData('recipes', JSON.stringify(recipes));
       await storeData(recipeData.recipeName, JSON.stringify(recipeData));
