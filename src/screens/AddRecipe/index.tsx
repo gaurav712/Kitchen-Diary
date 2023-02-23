@@ -40,18 +40,22 @@ const AddRecipe = () => {
   const handleSave = async () => {
     //const response = validateRecipeData(recipeData);
     //console.log(response);
-    let recipes = recipeStoreContext?.recipes;
-    if (recipes) {
-      /* Check if the recipe already exists */
-      if (recipes.includes(recipeData.recipeName)) {
-        Alert.alert('Error Saving Recipe!', 'Recipe already exists!');
-        return;
-      }
+    try {
+      let recipes = recipeStoreContext?.recipes;
+      if (recipes) {
+        /* Check if the recipe already exists */
+        if (recipes.includes(recipeData.recipeName)) {
+          Alert.alert('Error Saving Recipe!', 'Recipe already exists!');
+          return;
+        }
 
-      recipes = [...recipes, recipeData.recipeName];
-      await storeData('recipes', JSON.stringify(recipes));
-      await storeData(recipeData.recipeName, JSON.stringify(recipeData));
-      recipeStoreContext?.setRecipes(recipes);
+        recipes = [...recipes, recipeData.recipeName];
+        await storeData('recipes', JSON.stringify(recipes));
+        await storeData(recipeData.recipeName, JSON.stringify(recipeData));
+        recipeStoreContext?.setRecipes(recipes);
+      }
+    } catch (err) {
+      Alert.alert('Error Saving Recipe!', 'Something went wrong.');
     }
   };
 
