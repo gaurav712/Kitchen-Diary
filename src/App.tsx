@@ -3,11 +3,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView, StatusBar, useColorScheme} from 'react-native';
 import BootSplash from 'react-native-bootsplash';
+import Toast from 'react-native-toast-message';
 import {ITheme} from './@types/contexts/types';
+import {toastConfig} from './components/ToastConfig';
 import dark from './constants/colorschemes/dark';
 import light from './constants/colorschemes/light';
 import RecipeStoreContext from './contexts/RecipeStoreContext';
 import ThemeContext from './contexts/ThemeContext';
+import ToastContext from './contexts/ToastContext';
 import RootStack from './navigation';
 
 const App = () => {
@@ -42,6 +45,14 @@ const App = () => {
     fetchRecipes();
   }, []);
 
+  /* To show toasts */
+  const showToast = (text: string) => {
+    Toast.show({
+      type: 'default',
+      text1: text,
+    });
+  };
+
   return (
     <ThemeContext.Provider
       value={{
@@ -49,16 +60,23 @@ const App = () => {
         setTheme: (theme: ITheme) => setTheme(theme),
       }}>
       <RecipeStoreContext.Provider value={{recipes, setRecipes}}>
-        <SafeAreaView style={{flex: 1, backgroundColor: theme.accent}}>
-          <StatusBar
-            barStyle={
-              theme.colorscheme === 'light' ? 'dark-content' : 'light-content'
-            }
-          />
-          <NavigationContainer>
-            <RootStack />
-          </NavigationContainer>
-        </SafeAreaView>
+        <ToastContext.Provider value={{showToast}}>
+          <SafeAreaView style={{flex: 1, backgroundColor: theme.accent}}>
+            <StatusBar
+              barStyle={
+                theme.colorscheme === 'light' ? 'dark-content' : 'light-content'
+              }
+            />
+            <NavigationContainer>
+              <RootStack />
+              <Toast
+                position="bottom"
+                bottomOffset={150}
+                config={toastConfig}
+              />
+            </NavigationContainer>
+          </SafeAreaView>
+        </ToastContext.Provider>
       </RecipeStoreContext.Provider>
     </ThemeContext.Provider>
   );

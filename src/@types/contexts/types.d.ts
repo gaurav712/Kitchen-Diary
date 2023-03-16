@@ -18,3 +18,7 @@ export type RecipeStoreContextType = {
   recipes: string[];
   setRecipes: (recipes: string[]) => void;
 };
+
+export type ToastContextType = {
+  showToast: (string) => void;
+};
