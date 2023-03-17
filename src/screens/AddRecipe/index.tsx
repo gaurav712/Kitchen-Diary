@@ -11,12 +11,14 @@ import StepsInputTemplate from '../../components/StepsInputTemplate';
 import TimeInput from '../../components/TimeInput';
 import RecipeStoreContext from '../../contexts/RecipeStoreContext';
 import ThemeContext from '../../contexts/ThemeContext';
+import ToastContext from '../../contexts/ToastContext';
 import {validateRecipeData} from '../../util/validator';
 import styles from './styles';
 
 const AddRecipe = () => {
   const navigation = useNavigation<RootNavigationProp>();
   const recipeStoreContext = useContext(RecipeStoreContext);
+  const toastContext = useContext(ToastContext);
 
   const [recipeData, setRecipeData] = useState({
     recipeName: '',
@@ -53,6 +55,12 @@ const AddRecipe = () => {
         await storeData('recipes', JSON.stringify(recipes));
         await storeData(recipeData.recipeName, JSON.stringify(recipeData));
         recipeStoreContext?.setRecipes(recipes);
+
+        /* Indicate that the recipe was saved successfully */
+        toastContext?.showToast('Recipe Saved!');
+
+        /* Back to home screen */
+        handleBack();
       }
     } catch (err) {
       Alert.alert('Error Saving Recipe!', 'Something went wrong.');
