@@ -66,6 +66,7 @@ const App = () => {
               barStyle={
                 theme.colorscheme === 'light' ? 'dark-content' : 'light-content'
               }
+              backgroundColor={theme.backgroundColor}
             />
             <NavigationContainer>
               <RootStack />
