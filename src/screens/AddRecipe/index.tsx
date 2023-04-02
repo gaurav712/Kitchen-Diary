@@ -4,7 +4,7 @@ import {useContext, useEffect, useState} from 'react';
 import {Alert, ScrollView, TouchableOpacity, View} from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {RootNavigationProp} from '../../@types/navigation';
-import {IIngredientsData, IStepsData} from '../../@types/recipe';
+import {IErrors, IIngredientsData, IStepsData} from '../../@types/recipe';
 import CustomTextInput from '../../components/CustomTextInput';
 import IngredientInputListTemplate from '../../components/IngredientInputListTemplate';
 import StepsInputTemplate from '../../components/StepsInputTemplate';
@@ -27,6 +27,14 @@ const AddRecipe = () => {
     stepsData: {},
   });
 
+  const [_, setInputErrors] = useState<IErrors>({
+    errorsPresent: false,
+    recipeName: '',
+    duration: '',
+    ingredients: {},
+    stepsData: {},
+  });
+
   const handleBack = () => {
     navigation.goBack();
   };
@@ -40,8 +48,15 @@ const AddRecipe = () => {
   };
 
   const handleSave = async () => {
-    //const response = validateRecipeData(recipeData);
-    //console.log(response);
+    /* Validate data to be saved */
+    const errors = validateRecipeData(recipeData);
+
+    if (errors.errorsPresent) {
+      setInputErrors(errors);
+      toastContext?.showToast("Couldn't save recipe!");
+      return;
+    }
+
     try {
       let recipes = recipeStoreContext?.recipes;
       if (recipes) {

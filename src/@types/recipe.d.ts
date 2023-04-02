@@ -18,3 +18,19 @@ export interface IRecipe {
   ingredients: IIngredientsData;
   stepsData: IStepsData;
 }
+
+interface IErrorIngredient {
+  [key: string]: string[];
+}
+
+interface IErrorSteps {
+  [key: string]: string;
+}
+
+export interface IErrors {
+  errorsPresent: boolean;
+  recipeName?: string;
+  duration?: string;
+  ingredients: IErrorIngredient;
+  stepsData: IErrorSteps;
+}
