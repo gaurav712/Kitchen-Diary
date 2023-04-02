@@ -23,7 +23,6 @@ const styles = StyleSheet.create({
   stepNumContainer: {
     position: 'absolute',
     right: 0,
-    top: 10,
     alignSelf: 'center',
     width: 30,
     height: 30,
