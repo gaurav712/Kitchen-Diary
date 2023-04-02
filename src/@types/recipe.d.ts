@@ -1,6 +1,6 @@
 export interface IIngredient {
   name: string;
-  count: number;
+  count: string;
   servingSize: string;
 }
 

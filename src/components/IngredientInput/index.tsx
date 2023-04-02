@@ -17,7 +17,7 @@ const IngredientInput = ({
 }) => {
   const [ingredient, setIngredient] = useState<IIngredient>({
     name: '',
-    count: 0,
+    count: '0',
     servingSize: '',
   });
 
@@ -26,7 +26,7 @@ const IngredientInput = ({
   };
 
   const handleCountChange = (value: string) => {
-    setIngredient({...ingredient, count: parseInt(value)});
+    setIngredient({...ingredient, count: value});
   };
 
   const handleServingSizeChange = (servingSize: string) => {
@@ -60,10 +60,9 @@ const IngredientInput = ({
             <CustomTextInput
               contentContainerStyle={styles.inputNum}
               placeholder="Time"
-              value={
-                isNaN(ingredient.count) ? '0' : ingredient.count.toString()
-              }
+              value={ingredient.count}
               onChangeText={handleCountChange}
+              keyboardType={'numeric'}
             />
             <CustomTextInput
               contentContainerStyle={styles.servingSize}
