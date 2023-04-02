@@ -35,9 +35,7 @@ const IngredientInput = ({
 
   /* handle onChange */
   useEffect(() => {
-    if (ingredient.name && !isNaN(ingredient.count) && ingredient.servingSize) {
-      onChange(ingredient);
-    }
+    onChange(ingredient);
   }, [ingredient]);
 
   return (
