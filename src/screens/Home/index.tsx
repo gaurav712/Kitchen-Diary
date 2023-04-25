@@ -148,12 +148,18 @@ const Home = () => {
                   platform={'ios'}
                   containerStyle={{
                     backgroundColor: themeContext?.theme.backgroundColor,
+                    borderColor: themeContext?.theme.textColor,
+                  }}
+                  inputStyle={{
+                    color: themeContext?.theme.textColor,
                   }}
                   inputContainerStyle={{
-                    backgroundColor: themeContext?.theme.secondaryColor,
+                    backgroundColor: themeContext?.theme.backgroundColor,
+                    borderWidth: 1,
+                    borderBottomWidth: 1,
                   }}
                   cancelButtonProps={{
-                    color: themeContext?.theme.accentSecondary,
+                    color: themeContext?.theme.textColor,
                   }}
                 />
               </View>
