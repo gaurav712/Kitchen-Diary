@@ -6,10 +6,12 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {ThemeContextType} from '../../@types/contexts/types';
 import {RootNavigationProp} from '../../@types/navigation';
 import ThemeContext from '../../contexts/ThemeContext';
+import {useKeyboard} from '../../hooks/useKeyboard';
 import styles from './styles';
 
 const Home = () => {
   const navigation = useNavigation<RootNavigationProp>();
+  const keyboard = useKeyboard();
 
   const [searchQuery, setSearchQuery] = useState<string>('');
 
@@ -165,28 +167,30 @@ const Home = () => {
               </View>
             }
           />
-          <FAB
-            style={styles.addRecipeButton}
-            containerStyle={{
-              padding: 5,
-              borderRadius: 40,
-              backgroundColor: themeContext?.theme.backgroundColor,
-            }}
-            buttonStyle={{
-              backgroundColor: themeContext?.theme.textColor,
-              borderRadius: 35,
-              height: 70,
-              width: 70,
-            }}
-            icon={
-              <MaterialCommunityIcons
-                name="chef-hat"
-                color={themeContext?.theme.backgroundColor}
-                size={25}
-              />
-            }
-            onPress={handleAddRecipe}
-          />
+          {!keyboard.keyboardIsVisible && (
+            <FAB
+              style={styles.addRecipeButton}
+              containerStyle={{
+                padding: 5,
+                borderRadius: 40,
+                backgroundColor: themeContext?.theme.backgroundColor,
+              }}
+              buttonStyle={{
+                backgroundColor: themeContext?.theme.textColor,
+                borderRadius: 35,
+                height: 70,
+                width: 70,
+              }}
+              icon={
+                <MaterialCommunityIcons
+                  name="chef-hat"
+                  color={themeContext?.theme.backgroundColor}
+                  size={25}
+                />
+              }
+              onPress={handleAddRecipe}
+            />
+          )}
         </View>
       )}
     </ThemeContext.Consumer>
